@@ -17,6 +17,7 @@ class ExpenseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@ExpenseActivity,R.layout.activity_expense)
+        supportActionBar?.hide()
         layoutManager = LinearLayoutManager(this@ExpenseActivity)
         val friendsList = GetFriends(applicationContext).execute().get()
         binding.txtDef.visibility = if(friendsList.size==0) View.VISIBLE else View.GONE
