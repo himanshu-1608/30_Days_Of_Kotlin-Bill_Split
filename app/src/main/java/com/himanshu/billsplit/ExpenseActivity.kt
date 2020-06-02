@@ -1,5 +1,6 @@
 package com.himanshu.billsplit
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -20,10 +21,27 @@ class ExpenseActivity : AppCompatActivity() {
         supportActionBar?.hide()
         layoutManager = LinearLayoutManager(this@ExpenseActivity)
         val friendsList = GetFriends(applicationContext).execute().get()
-        binding.txtDef.visibility = if(friendsList.size==0) View.VISIBLE else View.GONE
-        binding.recyclerList.visibility = if(friendsList.size!=0) View.VISIBLE else View.GONE
+        if(friendsList.size==0) {
+            binding.txtDef.visibility = View.VISIBLE
+            binding.recyclerList.visibility = View.GONE
+            binding.btnSplit.visibility = View.GONE
+            binding.txtCheck.visibility = View.GONE
+            binding.layoutBill.visibility = View.GONE
+        } else {
+            binding.txtDef.visibility = View.GONE
+            binding.recyclerList.visibility = View.VISIBLE
+            binding.btnSplit.visibility = View.VISIBLE
+            binding.txtCheck.visibility = View.VISIBLE
+            binding.layoutBill.visibility = View.VISIBLE
+        }
         recyclerAdapter = FriendListAdapter(this@ExpenseActivity,friendsList)
         binding.recyclerList.layoutManager = layoutManager
         binding.recyclerList.adapter = recyclerAdapter
+
+        binding.btnSplit.setOnClickListener {
+            val intent = Intent(this@ExpenseActivity,FinalActivity::class.java)
+            intent.putExtra("ListOfFriends",recyclerAdapter.checkList)
+            startActivity(intent)
+        }
     }
 }

@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:visibility="invisible"
+            android:id="@+id/layoutBill"
             android:weightSum="5"
             android:layout_marginHorizontal="20dp"
             android:orientation="horizontal"
@@ -40,7 +40,7 @@
         </LinearLayout>
 
         <TextView
-            android:visibility="invisible"
+            android:id="@+id/txtCheck"
             android:textSize="19sp"
             android:layout_marginHorizontal="40dp"
             android:gravity="center"
@@ -66,13 +66,13 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:background="@color/colorPrimary"
                 android:id="@+id/recyclerList"
-                android:layout_marginHorizontal="20dp"
+                android:paddingHorizontal="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="48dp"/>
 
             <Button
-                android:visibility="invisible"
+                android:id="@+id/btnSplit"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/white"
                 android:text="Split the bill"

@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExpenseActivity"></activity>
+        <activity android:name=".FinalActivity"></activity>
+        <activity android:name=".ExpenseActivity" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/HideToolBar">
