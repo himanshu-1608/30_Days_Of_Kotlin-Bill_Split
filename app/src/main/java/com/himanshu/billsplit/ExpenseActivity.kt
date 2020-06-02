@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.forEachIndexed
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.himanshu.billsplit.adapters.FriendListAdapter
@@ -18,7 +19,6 @@ class ExpenseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@ExpenseActivity,R.layout.activity_expense)
-        supportActionBar?.hide()
         layoutManager = LinearLayoutManager(this@ExpenseActivity)
         val friendsList = GetFriends(applicationContext).execute().get()
         if(friendsList.size==0) {

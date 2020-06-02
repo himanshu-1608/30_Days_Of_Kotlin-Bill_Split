@@ -3,23 +3,20 @@ package com.himanshu.billsplit
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.himanshu.billsplit.database.FriendEntity
+import com.himanshu.billsplit.databinding.ActivityFinalBinding
 
 class FinalActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityFinalBinding
+    private var cost = 0f
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_final)
+        binding = DataBindingUtil.setContentView(this@FinalActivity,R.layout.activity_final)
+        cost = 102030.12f
+        binding.cost = cost
         val list = this.intent.extras?.getParcelableArrayList<FriendEntity>("ListOfFriends")
-        //Toast.makeText(this,"$list",Toast.LENGTH_LONG).show()
-        val objectMap: MutableMap<Any, Any> = HashMap()
-        val phone: MutableMap<Any, Any> = HashMap()
-
-        phone["mobile"] = 1234567890
-        objectMap["FirstName"] = "Fred"
-        objectMap["LastName"] = "Poulsen"
-        objectMap["Age"] = "18"
-        objectMap["Phone"] = phone
-        Toast.makeText(this,"$objectMap",Toast.LENGTH_LONG).show()
+        Toast.makeText(this,"$list",Toast.LENGTH_LONG).show()
     }
 }
