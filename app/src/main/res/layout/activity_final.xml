@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="cost"
-            type="Float" />
+            name="activity"
+            type="com.himanshu.billsplit.FinalActivity" />
     </data>
 
     <LinearLayout
@@ -34,7 +34,6 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:text="@{String.valueOf(cost)}"
                 android:id="@+id/txtCost"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

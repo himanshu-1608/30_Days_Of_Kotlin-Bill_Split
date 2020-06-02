@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ExpenseActivity">
 
+    <data>
+        <variable
+            name="activity"
+            type="com.himanshu.billsplit.ExpenseActivity" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,14 +46,16 @@
         </LinearLayout>
 
         <TextView
+            android:background="@color/colorPrimaryDark"
             android:id="@+id/txtCheck"
             android:textSize="19sp"
-            android:layout_marginHorizontal="40dp"
+            android:paddingHorizontal="40dp"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/white"
             android:layout_marginTop="15dp"
             android:text="Check all friends with whom you wanna share the bill"
             android:layout_width="match_parent"
+            android:paddingVertical="9dp"
             android:layout_height="wrap_content"/>
 
         <RelativeLayout
