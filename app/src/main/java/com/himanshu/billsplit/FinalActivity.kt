@@ -1,21 +1,59 @@
 package com.himanshu.billsplit
 
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
-import com.himanshu.billsplit.database.FriendEntity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.himanshu.billsplit.adapters.FriendShareAdapter
+import com.himanshu.billsplit.database.expenses.ExpenseEntity
+import com.himanshu.billsplit.database.friends.FriendEntity
 import com.himanshu.billsplit.databinding.ActivityFinalBinding
+import java.math.BigDecimal
 
 class FinalActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFinalBinding
-    var cost = 0f
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var recyclerAdapter: FriendShareAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this@FinalActivity,R.layout.activity_final)
-        binding.txtCost.text = "$cost"
         val list = this.intent.extras?.getParcelableArrayList<FriendEntity>("ListOfFriends")
-        Toast.makeText(this,"$list",Toast.LENGTH_LONG).show()
+        val totalCost = this.intent.getDoubleExtra("TotalCost",0.00)
+        val indCost = totalCost.div(list!!.size)
+        binding.txtCost.text = BigDecimal(totalCost).toPlainString()
+        linearLayoutManager = LinearLayoutManager(this@FinalActivity)
+        recyclerAdapter = FriendShareAdapter(this@FinalActivity, list)
+        binding.recyclerExpense.layoutManager = linearLayoutManager
+        binding.recyclerExpense.adapter = recyclerAdapter
+        for(i in 0 until list.size) {
+            binding.recyclerExpense[i].findViewById<EditText>(R.id.etShare).setText(BigDecimal(indCost).toPlainString())
+        }
+        binding.btnAddExp.setOnClickListener {
+            var total = 0.00
+            for(i in 0 until list.size) {
+                val view = binding.recyclerExpense[i]
+                val editText = view.findViewById<EditText>(R.id.etShare)
+                val share = editText.text.toString().trim()
+                if(share.isEmpty()) {
+                    editText.error = "Add a value here"
+                    editText.requestFocus()
+                    break
+                } else {
+                    total += share.toDouble()
+                }
+            }
+            if(BigDecimal(total).setScale(4,BigDecimal.ROUND_DOWN) == BigDecimal(totalCost).setScale(4,BigDecimal.ROUND_DOWN)) {
+                Toast.makeText(this,"$total & ${BigDecimal(totalCost).toPlainString()} & ${total==totalCost}",Toast.LENGTH_SHORT).show()
+
+                val expense = ExpenseEntity(System.currentTimeMillis(),123.321,list)
+                
+            }
+            else
+                Toast.makeText(this,"Not distributed all the expenses properly",Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.himanshu.billsplit.database
+package com.himanshu.billsplit.database.friends
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

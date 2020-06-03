@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.himanshu.billsplit.R
-import com.himanshu.billsplit.database.FriendEntity
+import com.himanshu.billsplit.database.friends.FriendEntity
 import java.util.Collections
 import kotlin.collections.ArrayList
 

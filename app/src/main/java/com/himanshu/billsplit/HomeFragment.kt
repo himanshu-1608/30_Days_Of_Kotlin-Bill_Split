@@ -1,9 +1,9 @@
 package com.himanshu.billsplit
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +12,8 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.himanshu.billsplit.database.DBAsyncTaskFriend
-import com.himanshu.billsplit.database.FriendEntity
+import com.himanshu.billsplit.database.friends.DBAsyncTaskFriend
+import com.himanshu.billsplit.database.friends.FriendEntity
 import com.himanshu.billsplit.databinding.FragmentHomeBinding
 
 
@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        adduser()
         binding.btnAddFrnd.setOnClickListener {
             addFriend()
         }
@@ -33,6 +33,31 @@ class HomeFragment : Fragment() {
         }
         return binding.root
     }
+
+    private fun adduser() {
+        var getter = DBAsyncTaskFriend(
+            (activity as MainActivity).applicationContext,
+            FriendEntity(
+                (activity as MainActivity).getSharedPreferences("DataFile", Context.MODE_PRIVATE).getString("UserName", "Me")!!,
+                0.00
+            ),
+            1
+        ).execute().get()
+        if (!getter) {
+            getter = DBAsyncTaskFriend(
+                (activity as MainActivity).applicationContext,
+                FriendEntity(
+                    (activity as MainActivity).getSharedPreferences("DataFile", Context.MODE_PRIVATE).getString("UserName", "Me")!!,
+                    0.00
+                ),
+                2
+            ).execute().get()
+            if (!getter) {
+                Toast.makeText(context, "Friend not added! Try again",Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
     private fun addFriend() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(context)
         val myLayout = LinearLayout(context)
@@ -57,7 +82,7 @@ class HomeFragment : Fragment() {
                 } else {
                     var getter = DBAsyncTaskFriend(
                         (activity as MainActivity).applicationContext,
-                        FriendEntity(name, 0F),
+                        FriendEntity(name, 0.00),
                         1
                     ).execute().get()
                     if(getter) {
@@ -67,7 +92,7 @@ class HomeFragment : Fragment() {
                             (activity as MainActivity).applicationContext,
                             FriendEntity(
                                 name,
-                                0F
+                                0.00
                             ),
                             2
                         ).execute().get()

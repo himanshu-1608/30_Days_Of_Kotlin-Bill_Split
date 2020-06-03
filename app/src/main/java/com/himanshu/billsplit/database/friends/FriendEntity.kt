@@ -1,8 +1,7 @@
-package com.himanshu.billsplit.database
+package com.himanshu.billsplit.database.friends
 
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,16 +9,16 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Friends")
 data class FriendEntity(
     @PrimaryKey val friend_name: String,
-    @ColumnInfo(name = "debt") val debt: Float
+    @ColumnInfo(name = "debt") val debt: Double
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
-        parcel.readFloat()
+        parcel.readDouble()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(friend_name)
-        parcel.writeFloat(debt)
+        parcel.writeDouble(debt)
     }
 
     override fun describeContents(): Int {

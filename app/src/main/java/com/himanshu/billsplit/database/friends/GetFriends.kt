@@ -1,4 +1,4 @@
-package com.himanshu.billsplit.database
+package com.himanshu.billsplit.database.friends
 
 import android.content.Context
 import android.os.AsyncTask

@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         sp.edit().putString("UserName","Himanshu").apply()
         sp.edit().putString("UserPhone","987654321").apply()
         setUpToolbar()
-
     }
 
     private fun setUpToolbar() {

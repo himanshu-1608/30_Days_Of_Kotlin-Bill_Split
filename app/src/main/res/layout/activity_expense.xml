@@ -3,12 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ExpenseActivity">
 
-    <data>
-        <variable
-            name="activity"
-            type="com.himanshu.billsplit.ExpenseActivity" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +33,7 @@
                 android:id="@+id/etCost"
                 android:gravity="center"
                 android:layout_weight="2"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
@@ -61,15 +55,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txtDef"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="30sp"
-                android:text="No Friends Here.\nAdd friends first"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:background="@color/colorPrimary"
