@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.himanshu.billsplit.adapters.FriendShareAdapter
 import com.himanshu.billsplit.database.expenses.ExpenseEntity
+import com.himanshu.billsplit.database.friends.DBAsyncTaskFriend
 import com.himanshu.billsplit.database.friends.FriendEntity
 import com.himanshu.billsplit.databinding.ActivityFinalBinding
 import java.math.BigDecimal
@@ -34,6 +35,7 @@ class FinalActivity : AppCompatActivity() {
         }
         binding.btnAddExp.setOnClickListener {
             var total = 0.00
+            var expenseArrayList: ArrayList<Double> = arrayListOf()
             for(i in 0 until list.size) {
                 val view = binding.recyclerExpense[i]
                 val editText = view.findViewById<EditText>(R.id.etShare)
@@ -44,13 +46,19 @@ class FinalActivity : AppCompatActivity() {
                     break
                 } else {
                     total += share.toDouble()
+                    expenseArrayList.add(share.toDouble())
                 }
             }
             if(BigDecimal(total).setScale(4,BigDecimal.ROUND_DOWN) == BigDecimal(totalCost).setScale(4,BigDecimal.ROUND_DOWN)) {
                 Toast.makeText(this,"$total & ${BigDecimal(totalCost).toPlainString()} & ${total==totalCost}",Toast.LENGTH_SHORT).show()
+                for(i in 0 until list.size) {
+                    list[i].debt += expenseArrayList[i]
+                    val check = DBAsyncTaskFriend(applicationContext, list[i],3).execute().get()
+                    if(!check) {
+                        Toast.makeText(this,"Some Error Occurred",Toast.LENGTH_SHORT).show()
+                    }
+                }
 
-                val expense = ExpenseEntity(System.currentTimeMillis(),123.321,list)
-                
             }
             else
                 Toast.makeText(this,"Not distributed all the expenses properly",Toast.LENGTH_SHORT).show()

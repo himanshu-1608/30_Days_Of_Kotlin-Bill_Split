@@ -9,5 +9,5 @@ import com.himanshu.billsplit.database.friends.FriendEntity
 data class ExpenseEntity(
     @PrimaryKey val expense_id: Long,
     @ColumnInfo(name = "expense_cost") val expenseCost: Double,
-    @ColumnInfo(name = "Friends") val friendList: ArrayList<FriendEntity>
+    @ColumnInfo(name = "friends") val friendList: ArrayList<String>
 )

@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Friends")
 data class FriendEntity(
     @PrimaryKey val friend_name: String,
-    @ColumnInfo(name = "debt") val debt: Double
+    @ColumnInfo(name = "debt") var debt: Double
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
