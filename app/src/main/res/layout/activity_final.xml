@@ -44,6 +44,14 @@
 
             </LinearLayout>
 
+            <TextView
+                android:text="Change individual share or split equally. The total sum should match with the total bill money."
+                android:gravity="center"
+                android:paddingVertical="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerExpense"
                 android:layout_width="match_parent"

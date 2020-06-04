@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:inputType="numberDecimal"
-            android:maxLength="8"
+            android:maxLength="10"
             android:maxLines="1" />
 
     </LinearLayout>

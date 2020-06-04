@@ -23,18 +23,7 @@
         android:gravity="start"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtUserPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:gravity="start"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
 
 </LinearLayout>

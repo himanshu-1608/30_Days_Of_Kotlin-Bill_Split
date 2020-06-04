@@ -29,6 +29,7 @@ class DBAsyncTaskFriend(private val context: Context, private val friendEntity: 
             3 -> {
                 //Update
                 db.friendDao().updateFriend(friendEntity)
+                return true
             }
         }
         return false

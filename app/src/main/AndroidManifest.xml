@@ -9,17 +9,19 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FinalActivity"/>
-        <activity android:name=".ExpenseActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/HideToolBar">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/HideAppBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FinalActivity" />
+        <activity android:name=".ExpenseActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/HideToolBar"/>
     </application>
 
 </manifest>

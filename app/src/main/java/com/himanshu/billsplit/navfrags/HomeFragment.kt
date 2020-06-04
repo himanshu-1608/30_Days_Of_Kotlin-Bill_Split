@@ -1,7 +1,6 @@
-package com.himanshu.billsplit
+package com.himanshu.billsplit.navfrags
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
@@ -12,6 +11,8 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.himanshu.billsplit.ExpenseActivity
+import com.himanshu.billsplit.MainActivity
 import com.himanshu.billsplit.database.friends.DBAsyncTaskFriend
 import com.himanshu.billsplit.database.friends.FriendEntity
 import com.himanshu.billsplit.databinding.FragmentHomeBinding
@@ -24,38 +25,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
-        adduser()
         binding.btnAddFrnd.setOnClickListener {
             addFriend()
         }
         binding.btnAddExp.setOnClickListener {
-            startActivity(Intent(activity,ExpenseActivity::class.java))
+            startActivity(Intent(activity, ExpenseActivity::class.java))
         }
         return binding.root
-    }
-
-    private fun adduser() {
-        var getter = DBAsyncTaskFriend(
-            (activity as MainActivity).applicationContext,
-            FriendEntity(
-                (activity as MainActivity).getSharedPreferences("DataFile", Context.MODE_PRIVATE).getString("UserName", "Me")!!,
-                0.00
-            ),
-            1
-        ).execute().get()
-        if (!getter) {
-            getter = DBAsyncTaskFriend(
-                (activity as MainActivity).applicationContext,
-                FriendEntity(
-                    (activity as MainActivity).getSharedPreferences("DataFile", Context.MODE_PRIVATE).getString("UserName", "Me")!!,
-                    0.00
-                ),
-                2
-            ).execute().get()
-            if (!getter) {
-                Toast.makeText(context, "Friend not added! Try again",Toast.LENGTH_LONG).show()
-            }
-        }
     }
 
     private fun addFriend() {

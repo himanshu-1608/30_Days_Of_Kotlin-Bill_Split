@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.himanshu.billsplit.databinding.ActivityMainBinding
+import com.himanshu.billsplit.navfrags.HomeFragment
 import kotlinx.android.synthetic.main.drawer_header.view.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,11 +20,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        sp = getSharedPreferences("DataFile", Context.MODE_PRIVATE)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        sp.edit().putString("UserName","Himanshu").apply()
-        sp.edit().putString("UserPhone","987654321").apply()
+        sp = getSharedPreferences("DataFile",Context.MODE_PRIVATE)
         setUpToolbar()
     }
 
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.navView.getHeaderView(0).txtUserName.text = sp.getString("UserName","")
-        binding.navView.getHeaderView(0).txtUserPhone.text = sp.getString("UserPhone","")
         abdt = ActionBarDrawerToggle(
             this@MainActivity,
             binding.drawerLayout,
