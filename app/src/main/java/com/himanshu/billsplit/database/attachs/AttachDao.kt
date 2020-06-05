@@ -11,4 +11,7 @@ interface AttachDao {
 
     @Query("SELECT * FROM Attaches")
     fun getAllAttaches(): List<AttachEntity>
+
+    @Query("DELETE FROM Attaches")
+    fun nukeAllAttaches()
 }

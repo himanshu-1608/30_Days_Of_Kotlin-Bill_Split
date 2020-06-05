@@ -10,4 +10,7 @@
     <string name="fht2"><b>\u00b7</b> Click <b>Add Expense</b> button to add a new expense.\n\n<b>\u00b7</b> Equally distribute expense among friends.\n\n<b>\u00b7</b> Add friends using <b>Add Friend</b> button</string>
     <string name="fht3">Add Friend</string>
     <string name="fht4">Add Expense</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

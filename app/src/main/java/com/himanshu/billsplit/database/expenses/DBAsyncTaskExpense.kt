@@ -4,16 +4,26 @@ import android.content.Context
 import android.os.AsyncTask
 import androidx.room.Room
 
-class DBAsyncTaskExpense(private val context: Context, private val expenseEntity: ExpenseEntity) : AsyncTask<Void, Void, Boolean>() {
+class DBAsyncTaskExpense(context: Context, private val expenseEntity: ExpenseEntity, private val mode: Int) : AsyncTask<Void, Void, Boolean>() {
 
     private val db = Room
         .databaseBuilder(context, ExpenseDatabase::class.java,"Expenses")
         .build()
 
     override fun doInBackground(vararg params: Void?): Boolean {
-        db.expenseDao().insertExpense(expenseEntity)
-        db.close()
-        return true
+        when(mode) {
+            1 -> {
+                db.expenseDao().insertExpense(expenseEntity)
+                db.close()
+                return true
+            }
+            2 -> {
+                db.expenseDao().nukeAllExpenses()
+                db.close()
+                return true
+            }
+        }
+        return false
     }
 
 }

@@ -21,16 +21,16 @@
                 android:src="@drawable/ic_app" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/txtUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:paddingVertical="10dp"
                 android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/txtDef"
@@ -49,9 +49,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:gravity="center"
-                android:hint="Your Unique ID"
+                android:hint="Your Unique Name"
                 android:inputType="textPersonName"
                 android:maxLength="15"
                 android:maxLines="1"
@@ -60,13 +61,14 @@
                 android:visibility="gone" />
 
             <Button
-                android:visibility="gone"
                 android:id="@+id/btnOk"
-                android:text="OK"
-                android:background="@color/white"
-                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/nav_gradient"
+                android:text="OK"
+                android:textColor="@color/white"
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>

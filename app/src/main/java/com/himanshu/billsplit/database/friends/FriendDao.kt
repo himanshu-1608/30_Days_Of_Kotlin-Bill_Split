@@ -16,4 +16,6 @@ interface FriendDao {
     @Query("SELECT * FROM Friends")
     fun getAllFriends(): List<FriendEntity>
 
+    @Query("DELETE FROM Friends")
+    fun nukeAllFriends()
 }

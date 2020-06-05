@@ -20,11 +20,12 @@ import com.himanshu.billsplit.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
+    private lateinit var binding: FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.btnAddFrnd.setOnClickListener {
             addFriend()
         }
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
 
         alertDialog.setTitle("Add Friend")
         alertDialog.setMessage("Add Unique Names Only")
+        alertDialog.setCancelable(false)
 
         val input1 = EditText(context)
         val px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20F,context?.resources?.displayMetrics).toInt()

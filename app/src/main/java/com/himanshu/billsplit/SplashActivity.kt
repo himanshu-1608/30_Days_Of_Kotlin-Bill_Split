@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
             binding.txtUser.text = "Hi, "+sp.getString("UserName","Error")
             Handler().postDelayed({
                 val intent = Intent(this@SplashActivity,MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
             },1000)
@@ -49,7 +49,7 @@ class SplashActivity : AppCompatActivity() {
                 val check = DBAsyncTaskFriend(applicationContext, FriendEntity(user,0.00),2).execute().get()
                 if(check) {
                     val intent = Intent(this@SplashActivity,MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
                 }

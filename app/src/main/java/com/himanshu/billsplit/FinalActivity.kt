@@ -61,7 +61,7 @@ class FinalActivity : AppCompatActivity() {
                 BigDecimal(total).setScale(4,BigDecimal.ROUND_DOWN) == BigDecimal(totalCost).setScale(4,BigDecimal.ROUND_DOWN) -> {
 
                     val id = DateFormat.getDateTimeInstance().format(Date())
-                    var check = DBAsyncTaskExpense(applicationContext, ExpenseEntity(id,totalCost)).execute().get()
+                    var check = DBAsyncTaskExpense(applicationContext, ExpenseEntity(id,totalCost),1).execute().get()
                     if(!check) {
                         Toast.makeText(this,"Some Error Occurred",Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
@@ -78,14 +78,15 @@ class FinalActivity : AppCompatActivity() {
                                 UUID.randomUUID().toString(),
                                 id,
                                 list[i].friend_name,
-                                expenseArrayList[i])).execute().get()
+                                expenseArrayList[i]),
+                            1).execute().get()
                         if(!check) {
                             Toast.makeText(this,"Some Error Occurred",Toast.LENGTH_SHORT).show()
                             return@setOnClickListener
                         }
                     }
                     val intent  = Intent(this@FinalActivity,MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
                 }

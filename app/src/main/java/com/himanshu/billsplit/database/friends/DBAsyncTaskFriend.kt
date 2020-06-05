@@ -9,6 +9,7 @@ class DBAsyncTaskFriend(private val context: Context, private val friendEntity: 
     // Mode 1 -> Checker by Name
     // Mode 2 -> Add
     // Mode 3 -> Update
+    // Mode 4 -> Nuke All
 
     private val db = Room.databaseBuilder(context, FriendDatabase::class.java,"Friends").build()
 
@@ -29,6 +30,11 @@ class DBAsyncTaskFriend(private val context: Context, private val friendEntity: 
             3 -> {
                 //Update
                 db.friendDao().updateFriend(friendEntity)
+                return true
+            }
+            4 -> {
+                // Nuke All
+                db.friendDao().nukeAllFriends()
                 return true
             }
         }

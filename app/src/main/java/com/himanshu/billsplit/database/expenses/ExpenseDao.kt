@@ -11,4 +11,7 @@ interface ExpenseDao {
 
     @Query("SELECT * FROM Expenses")
     fun getAllExpenses(): List<ExpenseEntity>
+
+    @Query("DELETE FROM Expenses")
+    fun nukeAllExpenses()
 }
