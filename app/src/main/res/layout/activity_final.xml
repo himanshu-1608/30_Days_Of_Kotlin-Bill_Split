@@ -45,6 +45,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txtDyn"
                 android:text="Change individual share or split equally. The total sum should match with the total bill money."
                 android:gravity="center"
                 android:paddingVertical="5dp"

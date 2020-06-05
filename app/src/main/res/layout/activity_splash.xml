@@ -32,33 +32,23 @@
                 android:textSize="20sp"
                 android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/txtDef"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Enter Username"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:visibility="gone" />
-
             <EditText
                 android:id="@+id/etDef"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/white"
+                android:background="@drawable/style_but1"
                 android:gravity="center"
+                android:textColor="@color/white"
+                android:paddingVertical="10dp"
                 android:hint="Your Unique Name"
                 android:inputType="textPersonName"
                 android:maxLength="15"
                 android:maxLines="1"
                 android:padding="5dp"
                 android:textSize="18sp"
-                android:visibility="gone" />
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/btnOk"

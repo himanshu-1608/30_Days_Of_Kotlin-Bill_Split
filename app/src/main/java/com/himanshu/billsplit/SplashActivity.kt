@@ -21,12 +21,10 @@ class SplashActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@SplashActivity,R.layout.activity_splash)
         sp = getSharedPreferences("DataFile",Context.MODE_PRIVATE)
         if(sp.getString("UserName","User786") == "User786") {
-            binding.txtDef.visibility = View.VISIBLE
             binding.etDef.visibility = View.VISIBLE
             binding.txtUser.visibility = View.GONE
             binding.btnOk.visibility = View.VISIBLE
         } else {
-            binding.txtDef.visibility = View.GONE
             binding.etDef.visibility = View.GONE
             binding.btnOk.visibility = View.GONE
             binding.txtUser.visibility = View.VISIBLE

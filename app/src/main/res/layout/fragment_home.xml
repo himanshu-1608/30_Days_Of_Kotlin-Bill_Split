@@ -44,11 +44,11 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="15dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_green_light"
+            android:background="@drawable/style_but1"
             android:gravity="center"
             android:text="@string/fht3"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
         <Button
@@ -59,11 +59,11 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="15dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_purple"
+            android:background="@drawable/style_but1"
             android:gravity="center"
             android:text="@string/fht4"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
     </LinearLayout>

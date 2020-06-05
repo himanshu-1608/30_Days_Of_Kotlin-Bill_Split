@@ -1,11 +1,13 @@
 package com.himanshu.billsplit.adapters
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.himanshu.billsplit.R
 import com.himanshu.billsplit.database.friends.FriendEntity
@@ -13,8 +15,11 @@ import java.math.BigDecimal
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FriendShareAdapter(val context: Context, private val itemList: ArrayList<FriendEntity>, private val indCost: Double):
-    RecyclerView.Adapter<FriendShareAdapter.FriendShareHolder>(){
+class FriendShareAdapter(val context: Context,
+                         private val itemList: ArrayList<FriendEntity>,
+                         private val indCost: Double,
+                         private val flag : Boolean):
+                            RecyclerView.Adapter<FriendShareAdapter.FriendShareHolder>(){
 
     private val boolArray = ArrayList(Collections.nCopies(itemCount,false))
 
@@ -32,10 +37,11 @@ class FriendShareAdapter(val context: Context, private val itemList: ArrayList<F
     override fun onBindViewHolder(holder: FriendShareHolder, position: Int) {
         val itemObject = itemList[holder.adapterPosition]
         holder.txtFriendName.text = itemObject.friend_name
-        if(!boolArray[holder.adapterPosition]) {
-            holder.etShare.setText(BigDecimal(indCost).toPlainString())
-            boolArray[holder.adapterPosition] = true
+        if(flag) {
+            if(!boolArray[holder.adapterPosition]) {
+                holder.etShare.setText(BigDecimal(indCost).toPlainString())
+                boolArray[holder.adapterPosition] = true
+            }
         }
-
     }
 }

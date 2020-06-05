@@ -13,7 +13,6 @@
             android:weightSum="5"
             android:layout_marginHorizontal="20dp"
             android:orientation="horizontal"
-            android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -42,36 +41,84 @@
         <TextView
             android:background="@color/colorPrimaryDark"
             android:id="@+id/txtCheck"
-            android:textSize="19sp"
+            android:textSize="17sp"
             android:paddingHorizontal="40dp"
             android:gravity="center"
             android:textColor="@color/white"
             android:layout_marginTop="15dp"
             android:text="Check all friends with whom you wanna share the bill"
             android:layout_width="match_parent"
-            android:paddingVertical="9dp"
+            android:paddingVertical="3dp"
             android:layout_height="wrap_content"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:background="@color/colorPrimary"
-                android:id="@+id/recyclerList"
-                android:paddingHorizontal="10dp"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="48dp"/>
+                android:layout_marginBottom="48dp"
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btnSplit"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="@color/white"
-                android:text="Split the bill"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:background="@color/colorPrimary"
+                        android:id="@+id/recyclerList"
+                        android:paddingHorizontal="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/btnAddFrnd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/fht3"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <LinearLayout
+                android:weightSum="40"
                 android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_weight="19"
+                    android:id="@+id/btnSplitEqual"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
+                    android:text="Split Equally"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:background="@color/black"/>
+
+                <Button
+                    android:layout_weight="19"
+                    android:id="@+id/btnSplitUnequal"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="@color/white"
+                    android:text="Split Unequally"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
         </RelativeLayout>
 

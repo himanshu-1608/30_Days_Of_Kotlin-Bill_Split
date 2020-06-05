@@ -31,13 +31,14 @@ class FinalActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@FinalActivity,R.layout.activity_final)
         val list: ArrayList<FriendEntity> = this.intent.extras?.getParcelableArrayList<FriendEntity>("ListOfFriends") as ArrayList<FriendEntity>
         val totalCost = this.intent.getDoubleExtra("TotalCost",0.00)
+        val flag = this.intent.getBooleanExtra("Flag",false)
         val indCost = totalCost.div(list.size)
         binding.txtCost.text = BigDecimal(totalCost).toPlainString()
         linearLayoutManager = LinearLayoutManager(this@FinalActivity)
-        recyclerAdapter = FriendShareAdapter(this@FinalActivity, list,indCost)
+        recyclerAdapter = FriendShareAdapter(this@FinalActivity, list,indCost,flag)
         binding.recyclerExpense.layoutManager = linearLayoutManager
         binding.recyclerExpense.adapter = recyclerAdapter
-
+        binding.txtDyn.text = if(flag) "Expense Split Equally." else "Manually set the expense-shares of all friends"
         binding.btnAddExp.setOnClickListener {
             var total = 0.00
             val expenseArrayList: ArrayList<Double> = arrayListOf()
@@ -85,12 +86,14 @@ class FinalActivity : AppCompatActivity() {
                             return@setOnClickListener
                         }
                     }
+                    Toast.makeText(this@FinalActivity,"Added a new Expense",Toast.LENGTH_SHORT).show()
+
                     val intent  = Intent(this@FinalActivity,MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
                 }
-                else -> Toast.makeText(this,"Not distributed all the expenses properly",Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(this,"Individual share sum doesn't match the total cost",Toast.LENGTH_SHORT).show()
             }
         }
     }
