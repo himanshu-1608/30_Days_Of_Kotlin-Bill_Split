@@ -31,9 +31,11 @@ class FinalActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this@FinalActivity,R.layout.activity_final)
         val list: ArrayList<FriendEntity> = this.intent.extras?.getParcelableArrayList<FriendEntity>("ListOfFriends") as ArrayList<FriendEntity>
         val totalCost = this.intent.getDoubleExtra("TotalCost",0.00)
+        val descBill = this.intent.getStringExtra("descBill")
         val flag = this.intent.getBooleanExtra("Flag",false)
         val indCost = totalCost.div(list.size)
         binding.txtCost.text = BigDecimal(totalCost).toPlainString()
+        binding.txtDesc.text = descBill
         linearLayoutManager = LinearLayoutManager(this@FinalActivity)
         recyclerAdapter = FriendShareAdapter(this@FinalActivity, list,indCost,flag)
         binding.recyclerExpense.layoutManager = linearLayoutManager
@@ -59,10 +61,14 @@ class FinalActivity : AppCompatActivity() {
                 list.isEmpty() -> {
                     Toast.makeText(this,"Add a friend or choose yourself",Toast.LENGTH_LONG).show()
                 }
-                BigDecimal(total).setScale(4,BigDecimal.ROUND_DOWN) == BigDecimal(totalCost).setScale(4,BigDecimal.ROUND_DOWN) -> {
+                BigDecimal(total).setScale(4,
+                    BigDecimal.ROUND_DOWN) == BigDecimal(totalCost).setScale(4,BigDecimal.ROUND_DOWN) -> {
 
                     val id = DateFormat.getDateTimeInstance().format(Date())
-                    var check = DBAsyncTaskExpense(applicationContext, ExpenseEntity(id,totalCost),1).execute().get()
+                    var check =
+                        DBAsyncTaskExpense(applicationContext,
+                                            ExpenseEntity(id,totalCost,descBill!!),
+                                            1).execute().get()
                     if(!check) {
                         Toast.makeText(this,"Some Error Occurred",Toast.LENGTH_SHORT).show()
                         return@setOnClickListener

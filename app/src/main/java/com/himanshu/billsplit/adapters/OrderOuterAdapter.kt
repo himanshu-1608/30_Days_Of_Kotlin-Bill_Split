@@ -18,6 +18,7 @@ class OrderOuterAdapter(val context: Context,
 
     class OuterViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         val txtDate:TextView = view.findViewById(R.id.txtDate)
+        val txtDesc:TextView = view.findViewById(R.id.txtDesc)
         val txtTotal:TextView = view.findViewById(R.id.txtTotal)
         val recyclerInner:RecyclerView = view.findViewById(R.id.recyclerInner)
     }
@@ -33,6 +34,7 @@ class OrderOuterAdapter(val context: Context,
     override fun onBindViewHolder(holder: OuterViewHolder, position: Int) {
         holder.txtDate.text = expenses[holder.adapterPosition].expense_id
         holder.txtTotal.text = "Rs. "+expenses[holder.adapterPosition].expenseCost.toString()
+        holder.txtDesc.text = expenses[holder.adapterPosition].epenseDesc
         val linearLayoutManager = LinearLayoutManager(context)
         val recyclerAdapter = OrderInnerAdapter(context,arr1[holder.adapterPosition],arr2[holder.adapterPosition])
         holder.recyclerInner.layoutManager = linearLayoutManager

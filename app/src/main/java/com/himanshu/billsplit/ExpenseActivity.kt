@@ -34,6 +34,7 @@ class ExpenseActivity : AppCompatActivity() {
         val isMoney = intent.getBooleanExtra("isMoney",false)
         if(isMoney) {
             binding.etCost.setText(intent.getStringExtra("Money"))
+            binding.etDesc.setText(intent.getStringExtra("descBill"))
         }
         layoutManager = LinearLayoutManager(this@ExpenseActivity)
         supportActionBar?.title = "Add Expense"
@@ -43,19 +44,21 @@ class ExpenseActivity : AppCompatActivity() {
         binding.recyclerList.layoutManager = layoutManager
         binding.recyclerList.adapter = recyclerAdapter
         binding.btnSplitEqual.setOnClickListener {
-            if(checker(binding.etCost.text.toString().trim())) {
+            if(checker(binding.etCost.text.toString().trim(),binding.etDesc.text.toString().trim())) {
                 val intent = Intent(this@ExpenseActivity, FinalActivity::class.java)
                 intent.putExtra("ListOfFriends", recyclerAdapter.checkList)
                 intent.putExtra("TotalCost", binding.etCost.text.toString().trim().toDouble())
+                intent.putExtra("descBill", binding.etDesc.text.toString().trim())
                 intent.putExtra("Flag",true)
                 startActivity(intent)
             }
         }
         binding.btnSplitUnequal.setOnClickListener {
-            if(checker(binding.etCost.text.toString().trim())) {
+            if(checker(binding.etCost.text.toString().trim(),binding.etDesc.text.toString().trim())) {
                 val intent = Intent(this@ExpenseActivity, FinalActivity::class.java)
                 intent.putExtra("ListOfFriends", recyclerAdapter.checkList)
                 intent.putExtra("TotalCost", binding.etCost.text.toString().trim().toDouble())
+                intent.putExtra("descBill", binding.etDesc.text.toString().trim())
                 intent.putExtra("Flag",false)
                 startActivity(intent)
             }
@@ -125,16 +128,21 @@ class ExpenseActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun checker(finalString: String): Boolean {
+    private fun checker(sa: String,sb: String): Boolean {
         return when {
-            finalString.isEmpty() -> {
+            sa.isEmpty() -> {
                 binding.etCost.error = "Required"
                 binding.etCost.requestFocus()
                 false
             }
-            finalString.toDouble()==0.00 -> {
+            sa.toDouble()==0.00 -> {
                 binding.etCost.error = "Enter valid cost"
                 binding.etCost.requestFocus()
+                false
+            }
+            sa.isEmpty() -> {
+                binding.etDesc.error = "Required"
+                binding.etDesc.requestFocus()
                 false
             }
             else -> true

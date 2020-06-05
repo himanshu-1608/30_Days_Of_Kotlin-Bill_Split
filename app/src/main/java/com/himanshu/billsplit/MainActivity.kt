@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                 sp.edit().clear().apply()
                 DBAsyncTaskFriend(applicationContext, FriendEntity("Random",0.00),4).execute().get()
                 DBAsyncTaskAttach(applicationContext, AttachEntity("Unique","Time","Me",0.00),2).execute().get()
-                DBAsyncTaskExpense(applicationContext, ExpenseEntity("Time",0.00),2).execute().get()
+                DBAsyncTaskExpense(applicationContext, ExpenseEntity("Time",0.00,"Desc"),2).execute().get()
                 val intent = Intent(this@MainActivity, SplashActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
