@@ -23,8 +23,6 @@ import java.util.*
 
 class FinalActivity : AppCompatActivity() {
 
-
-
     private lateinit var binding: ActivityFinalBinding
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var recyclerAdapter: FriendShareAdapter

@@ -39,7 +39,7 @@ class ExpenseActivity : AppCompatActivity() {
             binding.etCost.error = "Required"
             binding.etCost.requestFocus()
             false
-        } else if(finalString[0]=='.' || finalString[finalString.length-1]=='.' || finalString.toDouble()==0.00) {
+        } else if(finalString.toDouble()==0.00) {
             binding.etCost.error = "Enter valid cost"
             binding.etCost.requestFocus()
             false
