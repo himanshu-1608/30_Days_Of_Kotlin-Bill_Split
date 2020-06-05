@@ -112,6 +112,7 @@ class ExpenseActivity : AppCompatActivity() {
                             overridePendingTransition(0,0)
                             val inte = Intent(this,ExpenseActivity::class.java)
                             inte.putExtra("Money",binding.etCost.text.toString().trim())
+                            inte.putExtra("descBill",binding.etDesc.text.toString().trim())
                             inte.putExtra("isMoney",true)
                             startActivity(inte)
                             overridePendingTransition(0,0)
@@ -140,7 +141,7 @@ class ExpenseActivity : AppCompatActivity() {
                 binding.etCost.requestFocus()
                 false
             }
-            sa.isEmpty() -> {
+            sb.isEmpty() -> {
                 binding.etDesc.error = "Required"
                 binding.etDesc.requestFocus()
                 false

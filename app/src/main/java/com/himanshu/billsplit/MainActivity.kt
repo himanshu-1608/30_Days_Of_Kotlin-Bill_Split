@@ -3,11 +3,11 @@ package com.himanshu.billsplit
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -112,5 +112,20 @@ class MainActivity : AppCompatActivity() {
             .setNegativeButton("No", null)
         val alert = builder.create()
         alert.show()
+    }
+
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawers()
+        } else {
+            when(supportFragmentManager.findFragmentById(R.id.frame)) {
+                is HomeFragment -> {
+                    super.onBackPressed()
+                }
+                is OrderFragment -> {
+                    setUpFragment(HomeFragment(),"Bill Split")
+                }
+            }
+        }
     }
 }
