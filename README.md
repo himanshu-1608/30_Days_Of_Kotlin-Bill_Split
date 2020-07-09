@@ -8,6 +8,8 @@ An app that keeps record of all the expenses and splits them between your friend
 ![License](https://img.shields.io/github/license/himanshu-1608/30_Days_Of_Kotlin-Bill_Split?color=purple)
 ![Completion](https://img.shields.io/badge/Project%20Completion-~100%25-blue)
 
+#### App Installation Link: https://drive.google.com/file/d/1cCr1DDnAVWQxXH5XKyfqd7KN8qb9XGSJ/view?usp=sharing
+
 - Technical Features:
   - Kotlin
   - Maths functionality for splitting bill
